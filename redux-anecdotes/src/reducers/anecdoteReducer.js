@@ -39,7 +39,7 @@ const anecdoteReducer = (state = [], action) => {
 export const createAncedote = content => {
   return {
     type: 'NEW_ANECDOTE',
-    data: {content, votes: 0}
+    data: content
   }
 }
 

@@ -1,12 +1,14 @@
 import React from 'react'
 import {useDispatch} from 'react-redux'
+import anecdoteServices from '../services/anecdotes'
 import {createAncedote} from '../reducers/anecdoteReducer'
 
 const AnecdoteForm = () => {
     const dispatch = useDispatch()
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(createAncedote(e.target.anecdote.value))
+        anecdoteServices.postNew(e.target.anecdote.value)
+        .then(data => dispatch(createAncedote(data)))
         e.target.anecdote.value = ''
       }
     return(
