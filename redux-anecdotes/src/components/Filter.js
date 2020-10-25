@@ -1,6 +1,6 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {createFilter} from '../reducers/anecdoteReducer'
+import {createFilter} from '../reducers/filterRedurcer'
 const Filter = () => {
     const dispatch = useDispatch()
   const handleChange = (event) => {

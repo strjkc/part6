@@ -1,6 +1,7 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {createVote, createNotification, removeNotification} from '../reducers/anecdoteReducer'
+import {createVote} from '../reducers/anecdoteReducer'
+import {createNotification, removeNotification} from '../reducers/notificationReducer'
 
 const AnecdoteList = () => {
     const anecdotes = useSelector(store =>

@@ -1,4 +1,3 @@
-import { combineReducers } from "redux"
 
 const anecdotesAtStart = [
   'If it hurts, do it more often',
@@ -35,45 +34,6 @@ const anecdoteReducer = (state = initialState, action) => {
   }
 }
 
-export const notificationReducer = (state=null, action) => {
-  switch(action.type){
-    case 'SHOW_NOTIFICATION':
-      return action.data
-    case 'HIDE_NOTIFICATION':
-      return null
-    default: 
-      return state
-  }
-}
-
-export const filterReducer = (state='', action) => {
-  switch(action.type){
-    case 'CHANGE_FILTER':
-      return action.data
-    default:
-      return state
-  }
-}
-
-const reducer = combineReducers({
-  anecdotes: anecdoteReducer,
-  notification: notificationReducer,
-  filter: filterReducer
-})
-
-export const createNotification = content => {
-  return {
-    type: 'SHOW_NOTIFICATION',
-    data: content
-  }
-}
-
-export const removeNotification = () => {
-  return {
-    type: 'HIDE_NOTIFICATION'
-  }
-}
-
 export const createAncedote = content => {
   return {
     type: 'NEW_ANECDOTE',
@@ -89,11 +49,6 @@ export const createVote = passedId => {
   }
 }
 
-export const createFilter = content => {
-  return {
-    type: 'CHANGE_FILTER',
-    data: content
-  }
-}
 
-export default reducer
+
+export default anecdoteReducer
