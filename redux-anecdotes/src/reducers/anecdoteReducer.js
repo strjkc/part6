@@ -1,3 +1,5 @@
+import { combineReducers } from "redux"
+
 const anecdotesAtStart = [
   'If it hurts, do it more often',
   'Adding manpower to a late software project makes it later!',
@@ -19,7 +21,7 @@ const asObject = (anecdote) => {
 
 const initialState = anecdotesAtStart.map(asObject)
 
-const reducer = (state = initialState, action) => {
+const anecdoteReducer = (state = initialState, action) => {
   switch (action.type){
     case 'NEW_ANECDOTE':
       return state.concat(action.data)
@@ -32,6 +34,36 @@ const reducer = (state = initialState, action) => {
       return state
   }
 }
+
+export const notificationReducer = (state=null, action) => {
+  switch(action.type){
+    case 'SHOW_NOTIFICATION':
+      return action.data
+    case 'HIDE_NOTIFICATION':
+      return null
+    default: 
+      return state
+  }
+}
+
+const reducer = combineReducers({
+  anecdotes: anecdoteReducer,
+  notification: notificationReducer}
+)
+
+export const createNotification = content => {
+  return {
+    type: 'SHOW_NOTIFICATION',
+    data: content
+  }
+}
+
+export const removeNotification = () => {
+  return {
+    type: 'HIDE_NOTIFICATION'
+  }
+}
+
 export const createAncedote = content => {
   return {
     type: 'NEW_ANECDOTE',
