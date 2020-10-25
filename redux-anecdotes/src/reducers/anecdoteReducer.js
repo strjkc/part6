@@ -1,5 +1,5 @@
 
-const anecdotesAtStart = [
+/*const anecdotesAtStart = [
   'If it hurts, do it more often',
   'Adding manpower to a late software project makes it later!',
   'The first 90 percent of the code accounts for the first 90 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.',
@@ -19,9 +19,11 @@ const asObject = (anecdote) => {
 }
 
 const initialState = anecdotesAtStart.map(asObject)
-
-const anecdoteReducer = (state = initialState, action) => {
+*/
+const anecdoteReducer = (state = [], action) => {
   switch (action.type){
+    case 'INITIALIZE_ANECDOTES':
+      return action.data
     case 'NEW_ANECDOTE':
       return state.concat(action.data)
     case 'INCREMENT_VOTE':
@@ -37,7 +39,14 @@ const anecdoteReducer = (state = initialState, action) => {
 export const createAncedote = content => {
   return {
     type: 'NEW_ANECDOTE',
-    data: asObject(content)
+    data: {content, votes: 0}
+  }
+}
+
+export  const initializeAnecdotes = content => {
+  return {
+    type: 'INITIALIZE_ANECDOTES',
+    data: content
   }
 }
 export const createVote = passedId => {
