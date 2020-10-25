@@ -46,10 +46,20 @@ export const notificationReducer = (state=null, action) => {
   }
 }
 
+export const filterReducer = (state='', action) => {
+  switch(action.type){
+    case 'CHANGE_FILTER':
+      return action.data
+    default:
+      return state
+  }
+}
+
 const reducer = combineReducers({
   anecdotes: anecdoteReducer,
-  notification: notificationReducer}
-)
+  notification: notificationReducer,
+  filter: filterReducer
+})
 
 export const createNotification = content => {
   return {
@@ -76,6 +86,13 @@ export const createVote = passedId => {
     data: {
       id: passedId
     }
+  }
+}
+
+export const createFilter = content => {
+  return {
+    type: 'CHANGE_FILTER',
+    data: content
   }
 }
 
