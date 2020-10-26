@@ -33,11 +33,14 @@ export  const initializeAnecdotes = content => {
   }
 }
 export const createVote = passedId => {
-  return {
-    type: 'INCREMENT_VOTE',
-    data: {
-      id: passedId
-    }
+  return async dispatch => {
+    anecdoteServices.updateAnecdote(passedId)
+    dispatch({
+      type: 'INCREMENT_VOTE',
+      data: {
+        id: passedId
+        }
+    })
   }
 }
 
